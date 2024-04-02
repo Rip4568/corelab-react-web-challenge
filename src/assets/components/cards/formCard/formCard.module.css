@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid tomato;
+}
+
+form {
+    margin-top: 20px;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.card {
+    display: block;
+    background-color: rgb(167, 255, 255);
+    padding: 7px;
+    border-radius: 10px;
+    border: 2px solid aqua;
+}
+
+.header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.header input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.body {
+    margin-top: 10px;
+}
+.body textarea {
+    width: 100%;
+}
+
+.buttonCreate {
+    padding: 5px 30px;
+}

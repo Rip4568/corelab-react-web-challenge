@@ -3,10 +3,13 @@
 import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './loginPage.module.css'
-import { createTask, loginAPI } from '../services/api'
+import { createTask, loginAPI, signupAPI } from '../services/api'
 
-export default function LoginPage() {
+import React from 'react'
+
+export default function SignupPage() {
   const navigate = useNavigate()
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [username, setUsername] = useState('')
@@ -19,25 +22,26 @@ export default function LoginPage() {
     }
   }, [navigate])
 
-  const login = async () => {
-    try {
-      const response = await loginAPI(username, password)
-      if (response.status === 200) {
-        const data = response.data
-        localStorage.setItem('token', data.token)
-        navigate('/tasks')
+  const signup = async () => {
+    console.table(
+      {
+        email: email,
+        password: password,
+        username: username
       }
-      console.table(
-        {
-          password: password,
-          username: username
-        }
-      )
+    )
+
+    try {
+      const response = await signupAPI(username, email, password)
+      if(response.statusCode === 200) {
+        navigate('/')
+      }
     } catch (error) {
+      console.log(error);
       let message = ''
       const messageErrors = error.response.data
-      for (const messageError of Object.values(messageErrors)) {
-        message += `${messageError} \n`
+      for (const messageError of error.response.data.error.errors) {
+        message += `${messageError}! \n`
       }
       setErrorMessage(message)
     }
@@ -46,8 +50,8 @@ export default function LoginPage() {
   return (
     <Fragment>
       <section>
-        <h1>Login Page</h1>
-        {errorMessage}
+        <h1>Signup Page</h1>
+        <p>{errorMessage}</p>
         <form action="" method="post">
           <label htmlFor="username">Username</label>
           <input type="text" onChange={(e) => setUsername(e.target.value)} name="username" id="username" placeholder='Digite seu username aqui ...' />
@@ -55,8 +59,12 @@ export default function LoginPage() {
           <input type="password" onChange={(e) => setPassword(e.target.value)
           }
             name="password" id="password" placeholder='Digite sua senha aqui ...' />
-          <button type='button' className={styles.buttonLogin} onClick={login}>Login</button>
-          <p>Não tem uma conta ainda ? <a href="/signup">signup</a></p>
+          <label htmlFor="email">Email</label>
+          <input type="text" name="email" onChange={(e) => {
+            setEmail(e.target.value)
+          }} id="email" placeholder='Digite seu email aqui ...' />
+          <button type='button' className={styles.buttonLogin} onClick={signup}>Register</button>
+          <p>Ja tem uma conta ? faça <a href="/">login</a></p>
         </form>
       </section>
     </Fragment>

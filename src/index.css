@@ -1,4 +1,23 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+:root {
+  --blue50: '#f1f0ff',
+  --blue100: '#e6e4ff',
+  --blue200: '#d0cdff',
+  --blue300: '#afa6ff',
+  --blue400: '#8773ff',
+  --blue500: '#633bff',
+  --blue600: '#5114ff',
+  --blue700: '#4b0fff',
+  --blue800: '#3601d6',
+  --blue900: '#2e03af',
+  --blue950: '#180077',
+}
+
+i {
+  cursor: pointer;
 }
