@@ -28,4 +28,7 @@
 
 .cardFooter button  {
     padding: 5px 10px;
+    background-color: red;
+    color: aqua;
+    font-weight: 700;
 }

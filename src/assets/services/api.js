@@ -17,8 +17,19 @@ export const getTasks = async (token) => {
   return response;
 }
 
+export const updateTask = async (id, data, token) => {
+  const response = await api.put(`/tasks/${id}`, {
+    ...data,
+  }, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
+}
+
 export const deleteTask = async (id, token) => {
-  const response = await api.delete(`/tasks/${id}`, {
+  const response = await api.delete(`/tasks/${id}`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },

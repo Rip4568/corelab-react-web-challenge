@@ -3,7 +3,7 @@
 import styles from './gridCards.module.css'
 export default function GridCards({ children }) {
   return (
-    <div className={styles.cards} style={{ border: '2px solid green' }}>
+    <div className={styles.cards}>
       {children}
     </div>
   )
